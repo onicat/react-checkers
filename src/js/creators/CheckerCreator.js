@@ -1,8 +1,10 @@
 class CheckerCreator {
-  create(player) {
+  create(player, rowIndex, cellIndex) {
     return {
       player,
-      type: 'soldier'
+      type: 'soldier',
+      rowIndex,
+      cellIndex
     }
   }
 }

@@ -1,8 +1,10 @@
 class CellCreator {
-  create(type) {
+  create(type, rowIndex, cellIndex) {
     return {
       type,
-      checker: null
+      checker: null,
+      rowIndex,
+      cellIndex
     }
   }
 }

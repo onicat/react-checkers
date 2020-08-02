@@ -17,7 +17,7 @@ class BoardCreator {
 
       for (let cellIndex = 0; cellIndex < boardWidth; cellIndex++) {
         const type = (isActiveCell(rowIndex, cellIndex)) ? 'active' : 'passive';
-        const cell = cellCreator.create(type);
+        const cell = cellCreator.create(type, rowIndex, cellIndex);
 
         row.push(cell);
       }
@@ -36,7 +36,9 @@ class BoardCreator {
         }
 
         if (isActiveCell(rowIndex, cellIndex)) {
-          const checker = checkerCreator.create(PLAYERS_TAGS.PLAYER1);
+          const checker = checkerCreator.create(
+            PLAYERS_TAGS.PLAYER1, rowIndex, cellIndex
+          );
 
           board[rowIndex][cellIndex].checker = checker;
           firstPlayerCheckersCounter--;
@@ -55,7 +57,9 @@ class BoardCreator {
         }
 
         if (isActiveCell(rowIndex, cellIndex)) {
-          const checker = checkerCreator.create(PLAYERS_TAGS.PLAYER2);
+          const checker = checkerCreator.create(
+            PLAYERS_TAGS.PLAYER2, rowIndex, cellIndex
+          );
 
           board[rowIndex][cellIndex].checker = checker;
           secondPlayerCheckersCounter--;
