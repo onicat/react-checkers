@@ -1,0 +1,5 @@
+export const INITIAL_SETTINGS = Object.freeze({
+  BOARD_WIDTH: 8,
+  BOARD_HEIGHT: 8,
+  CHECKERS_PER_PLAYER: 12
+});
