@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
 import { getBoard } from 'redux/selectors';
@@ -6,6 +6,8 @@ import Cell from './Cell';
 import Row from './Row';
 
 const Board = ({board}) => {
+  const [selectedChecker, selectChecker] = useState(null);
+  
   const renderRows = () => {
     const rows = [];
 
@@ -15,7 +17,12 @@ const Board = ({board}) => {
       for (let cellIndex = 0; cellIndex < board[rowIndex].length; cellIndex++) {
         const cell = board[rowIndex][cellIndex];
         
-        cells.push(<Cell key={cellIndex} cell={cell}/>)
+        cells.push(
+          <Cell 
+            selectChecker={selectChecker}
+            key={cellIndex}
+            cell={cell}
+          />)
       }
       
       rows.push(<Row key={rowIndex} cells={cells}/>);
