@@ -52,7 +52,7 @@ class WaysCreator {
 
     if (
       rightWayCellIndex <= this.lastCellIndex &&
-      this.board[wayRowIndex][leftWayCellIndex].checker === null
+      this.board[wayRowIndex][rightWayCellIndex].checker === null
     ) {
       const cell = this.board[wayRowIndex][rightWayCellIndex];
       const way = wayCreator.create('jump');
