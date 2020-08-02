@@ -1,0 +1,12 @@
+.Cell {
+  width: 30px;
+  height: 30px;
+}
+
+.Cell_active {
+  background-color: #262626;
+}
+
+.Cell_passive {
+  background-color: #3B3B3B;
+}

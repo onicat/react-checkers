@@ -1,5 +1,13 @@
+import React from 'react'
+
+import Board from 'components/Board'
+
 const App = () => {
-  return null
+  return (
+    <React.Fragment>
+      <Board/>
+    </React.Fragment>
+  )
 }
 
 export default App;

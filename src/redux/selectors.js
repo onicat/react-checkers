@@ -1,0 +1,1 @@
+export const getBoard = (store) => store.board;
