@@ -20,12 +20,14 @@ const Board = ({board}) => {
       
       for (let cellIndex = 0; cellIndex < board[rowIndex].length; cellIndex++) {
         const cell = board[rowIndex][cellIndex];
+        const way = (ways.has(cell)) ? ways.get(cell) : null;
         
         cells.push(
           <Cell 
             selectChecker={selectChecker}
             key={cellIndex}
             cell={cell}
+            way={way}
           />)
       }
       
