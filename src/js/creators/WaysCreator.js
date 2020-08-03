@@ -34,7 +34,7 @@ class WaysCreator {
     );
 
     if (
-      wayRowIndex < 0 &&
+      wayRowIndex < 0 ||
       wayRowIndex > this.lastRowIndex
     ) {
       return;
