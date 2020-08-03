@@ -5,12 +5,20 @@ import { getBoard } from 'redux/selectors';
 import Cell from './Cell';
 import Row from './Row';
 import WaysCreator from 'js/creators/WaysCreator';
+import { moveChecker } from 'redux/actions'
 
-const Board = ({board}) => {
+const Board = ({board, moveChecker}) => {
   const [selectedChecker, selectChecker] = useState(null);
   
   const waysCreator = new WaysCreator(board);
   const ways = waysCreator.create(selectedChecker);
+
+  const goToWay = (way) => {
+    if (way.type === 'jump') {
+      moveChecker(selectedChecker, way);
+      selectChecker(null);
+    }
+  };
 
   const renderRows = () => {
     const rows = [];
@@ -25,6 +33,7 @@ const Board = ({board}) => {
         cells.push(
           <Cell 
             selectChecker={selectChecker}
+            goToWay={goToWay}
             key={cellIndex}
             cell={cell}
             way={way}
@@ -51,5 +60,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  { moveChecker }
 )(Board);
