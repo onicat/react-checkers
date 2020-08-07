@@ -8,25 +8,28 @@ class WaysCreator {
     this.board = board;
     this.lastRowIndex = board.length - 1;
     this.lastCellIndex = board[0].length - 1;
+
+    this.ways = new Map();
   }
 
   create(checker) {
-    const ways = new Map();
-
     if (checker === null) {
-      return ways;
+      return this.ways;
     }
 
     const direction = (
       (checker.player === PLAYERS_TAGS.PLAYER1) ? 'down' : 'up'
     );
 
-    this._setJumps(ways, checker, direction);
+    this._setJumps(checker, direction);
+
+    const ways = this.ways;
+    this._clear();
 
     return ways;
   }
 
-  _setJumps(ways, checker, direction) {
+  _setJumps(checker, direction) {
     const leftWayCellIndex = checker.cellIndex - 1;
     const rightWayCellIndex = checker.cellIndex + 1;
     const wayRowIndex = (
@@ -47,7 +50,7 @@ class WaysCreator {
       const cell = this.board[wayRowIndex][leftWayCellIndex];
       const way = wayCreator.createJump(wayRowIndex, leftWayCellIndex);
 
-      ways.set(cell, way);
+      this.ways.set(cell, way);
     }
 
     if (
@@ -57,8 +60,12 @@ class WaysCreator {
       const cell = this.board[wayRowIndex][rightWayCellIndex];
       const way = wayCreator.createJump(wayRowIndex, rightWayCellIndex);
 
-      ways.set(cell, way);
+      this.ways.set(cell, way);
     }
+  }
+
+  _clear() {
+    this.ways = new Map();
   }
 }
 
