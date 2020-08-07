@@ -29,34 +29,6 @@ class WaysCreator {
     return ways;
   }
 
-  _tmp(checker, direction) {
-    const leftWayCellIndex = checker.cellIndex - 1;
-    const rightWayCellIndex = checker.cellIndex + 1;
-    const wayRowIndex = (
-      (direction === 'down') ? checker.rowIndex + 1 : checker.rowIndex - 1
-    );
-
-    if (
-      this._isCellExist(wayRowIndex, leftWayCellIndex) &&
-      this.board[wayRowIndex][leftWayCellIndex].checker === null
-    ) {
-      const cell = this.board[wayRowIndex][leftWayCellIndex];
-      const way = wayCreator.create('jump', wayRowIndex, leftWayCellIndex);
-
-      this.ways.set(cell, way);
-    }
-
-    if (
-      this._isCellExist(wayRowIndex, rightWayCellIndex) &&
-      this.board[wayRowIndex][rightWayCellIndex].checker === null
-    ) {
-      const cell = this.board[wayRowIndex][rightWayCellIndex];
-      const way = wayCreator.create('jump', wayRowIndex, rightWayCellIndex);
-
-      this.ways.set(cell, way);
-    }
-  }
-
   _setJumps(checker, direction) {
     const wayRowIndex = checker.rowIndex + ((direction === 'down') ? 1 : -1);
     let leftCell = null;
