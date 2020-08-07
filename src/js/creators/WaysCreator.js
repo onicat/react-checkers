@@ -48,7 +48,7 @@ class WaysCreator {
       this.board[wayRowIndex][leftWayCellIndex].checker === null
     ) {
       const cell = this.board[wayRowIndex][leftWayCellIndex];
-      const way = wayCreator.createJump(wayRowIndex, leftWayCellIndex);
+      const way = wayCreator.create('jump', wayRowIndex, leftWayCellIndex);
 
       this.ways.set(cell, way);
     }
@@ -58,7 +58,7 @@ class WaysCreator {
       this.board[wayRowIndex][rightWayCellIndex].checker === null
     ) {
       const cell = this.board[wayRowIndex][rightWayCellIndex];
-      const way = wayCreator.createJump(wayRowIndex, rightWayCellIndex);
+      const way = wayCreator.create('jump', wayRowIndex, rightWayCellIndex);
 
       this.ways.set(cell, way);
     }
