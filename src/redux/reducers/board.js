@@ -24,5 +24,11 @@ export default produce((state, action) => {
         cellIndex: movingTargetCell.cellIndex
       };
     }
+
+    case actionTypes.REMOVE_CHECKER: {
+      const checker = action.checker;
+
+      state[checker.rowIndex][checker.cellIndex].checker = null;
+    }
   }
 }, initialState);

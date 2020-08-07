@@ -14,3 +14,7 @@
 .Cell_way_jump {
   background-color: #c8b900;
 }
+
+.Cell_way_eaten {
+  background-color: #ff5722;
+}

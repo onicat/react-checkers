@@ -5,3 +5,8 @@ export const moveChecker = (checker, way) => ({
   checker,
   way
 });
+
+export const removeChecker = (checker) => ({
+  type: actionTypes.REMOVE_CHECKER,
+  checker
+});

@@ -9,10 +9,13 @@ const Cell = ({cell, way, selectChecker, goToWay}) => {
     'Cell': true,
     'Cell_active': cell.type === 'active',
     'Cell_passive': cell.type === 'passive',
-    'Cell_way_jump': way && way.type === 'jump'
+    'Cell_way_jump': way && ['jump', 'eating'].includes(way.type),
+    'Cell_way_eaten': way && way.type === 'eaten'
   });
 
-  const clickHandler = (way) ? goToWay.bind(null, way) : null;
+  const clickHandler = (
+    (way && way.type !== 'eaten') ? goToWay.bind(null, way) : null
+  );
 
   return (
     <td 
