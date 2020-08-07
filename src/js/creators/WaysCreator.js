@@ -29,7 +29,7 @@ class WaysCreator {
     return ways;
   }
 
-  _setJumps(checker, direction) {
+  _tmp(checker, direction) {
     const leftWayCellIndex = checker.cellIndex - 1;
     const rightWayCellIndex = checker.cellIndex + 1;
     const wayRowIndex = (
@@ -37,14 +37,7 @@ class WaysCreator {
     );
 
     if (
-      wayRowIndex < 0 ||
-      wayRowIndex > this.lastRowIndex
-    ) {
-      return;
-    }
-
-    if (
-      leftWayCellIndex >= 0 &&
+      this._isCellExist(wayRowIndex, leftWayCellIndex) &&
       this.board[wayRowIndex][leftWayCellIndex].checker === null
     ) {
       const cell = this.board[wayRowIndex][leftWayCellIndex];
@@ -54,13 +47,52 @@ class WaysCreator {
     }
 
     if (
-      rightWayCellIndex <= this.lastCellIndex &&
+      this._isCellExist(wayRowIndex, rightWayCellIndex) &&
       this.board[wayRowIndex][rightWayCellIndex].checker === null
     ) {
       const cell = this.board[wayRowIndex][rightWayCellIndex];
       const way = wayCreator.create('jump', wayRowIndex, rightWayCellIndex);
 
       this.ways.set(cell, way);
+    }
+  }
+
+  _setJumps(checker, direction) {
+    const wayRowIndex = checker.rowIndex + ((direction === 'down') ? 1 : -1);
+    let leftCell = null;
+    let rightCell = null;
+
+    if (this._isCellExist(wayRowIndex, checker.cellIndex - 1)) {
+      leftCell = this.board[wayRowIndex][checker.cellIndex - 1]
+    }
+
+    if (this._isCellExist(wayRowIndex, checker.cellIndex + 1)) {
+      rightCell = this.board[wayRowIndex][checker.cellIndex + 1]
+    }
+
+    if (leftCell && leftCell.checker === null) {
+      const way = wayCreator.create('jump', leftCell.rowIndex, leftCell.cellIndex);
+
+      this.ways.set(leftCell, way);
+    }
+
+    if (rightCell && rightCell.checker === null) {
+      const way = wayCreator.create('jump', rightCell.rowIndex, rightCell.cellIndex);
+
+      this.ways.set(rightCell, way);
+    }    
+  }
+
+  _isCellExist(rowIndex, cellIndex) {
+    if (
+      rowIndex >= 0 &&
+      rowIndex <= this.lastRowIndex &&
+      cellIndex >= 0 &&
+      cellIndex <= this.lastCellIndex
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 
