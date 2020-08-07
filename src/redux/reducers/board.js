@@ -1,8 +1,8 @@
 import produce from 'immer'
 
 import { INITIAL_SETTINGS } from 'js/constants'
-import BoardCreator from 'js/creators/BoardCreator';
-import actionTypes from 'redux/actionTypes';
+import BoardCreator from 'js/creators/BoardCreator'
+import actionTypes from 'redux/actionTypes'
 
 const boardCreator = new BoardCreator();
 const initialState = boardCreator.create(
@@ -15,14 +15,13 @@ export default produce((state, action) => {
   switch(action.type) {
     case actionTypes.MOVE_CHECKER: {
       const checker = action.checker;
-      const way = action.way;
+      const movingTargetCell = action.way.jumpTo;
 
-      // Нет индексов в интерфейсе way
       state[checker.rowIndex][checker.cellIndex].checker = null;
-      state[way.rowIndex][way.cellIndex].checker = {
+      state[movingTargetCell.rowIndex][movingTargetCell.cellIndex].checker = {
         ...checker,
-        rowIndex: way.rowIndex,
-        cellIndex: way.cellIndex
+        rowIndex: movingTargetCell.rowIndex,
+        cellIndex: movingTargetCell.cellIndex
       };
     }
   }

@@ -1,9 +1,8 @@
 class WayCreator {
-  create(type, rowIndex, cellIndex) {
+  create(type, jumpTo) {
     return {
       type,
-      rowIndex,
-      cellIndex
+      jumpTo
     }
   }
 }

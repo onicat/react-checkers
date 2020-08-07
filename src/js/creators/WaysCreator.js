@@ -43,13 +43,13 @@ class WaysCreator {
     }
 
     if (leftCell && leftCell.checker === null) {
-      const way = wayCreator.create('jump', leftCell.rowIndex, leftCell.cellIndex);
+      const way = wayCreator.create('jump', leftCell);
 
       this.ways.set(leftCell, way);
     }
 
     if (rightCell && rightCell.checker === null) {
-      const way = wayCreator.create('jump', rightCell.rowIndex, rightCell.cellIndex);
+      const way = wayCreator.create('jump', rightCell);
 
       this.ways.set(rightCell, way);
     }    
