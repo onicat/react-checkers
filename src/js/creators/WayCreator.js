@@ -1,8 +1,9 @@
 class WayCreator {
-  create(type, jumpTo) {
+  create(type, jumpTo = null, eatenChecker = null) {
     return {
       type,
-      jumpTo
+      jumpTo,
+      eatenChecker
     }
   }
 }

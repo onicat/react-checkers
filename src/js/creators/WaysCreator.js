@@ -22,6 +22,7 @@ class WaysCreator {
     );
 
     this._setJumps(checker, direction);
+    this._setEating(checker);
 
     const ways = this.ways;
     this._clear();
@@ -55,6 +56,30 @@ class WaysCreator {
     }    
   }
 
+  _setEating(checker) {
+    const wayLines = [
+      this._getCellsLine(checker, -1, -1, 2),
+      this._getCellsLine(checker, -1, 1, 2),
+      this._getCellsLine(checker, 1, -1, 2),
+      this._getCellsLine(checker, 1, 1, 2)
+    ];
+    
+    for (let line of wayLines) {
+      if (
+        line.length === 2 &&
+        line[0].checker &&
+        line[0].checker.player !== checker.player &&
+        line[1].checker === null
+      ) {
+        const eatingWay = wayCreator.create('eating', line[1], line[0]);
+        const eatenWay = wayCreator.create('eaten');
+
+        this.ways.set(line[0], eatenWay);
+        this.ways.set(line[1], eatingWay);
+      }
+    }
+  }
+
   _isCellExist(rowIndex, cellIndex) {
     if (
       rowIndex >= 0 &&
@@ -66,6 +91,27 @@ class WaysCreator {
     } else {
       return false;
     }
+  }
+
+  // At this moment only for line length = 2 (for 'soldiers')
+  _getCellsLine(relatedChecker, rowOffset, cellOffset, lineLength = 2) {
+    let currentRowOffset = rowOffset;
+    let currentCellOffset = cellOffset;
+    let line = [];
+
+    for (let iteration = 0; iteration < lineLength; iteration++) {
+      const rowIndex = relatedChecker.rowIndex + currentRowOffset;
+      const cellIndex = relatedChecker.cellIndex + currentCellOffset;
+
+      if (this._isCellExist(rowIndex, cellIndex)) {
+        line.push(this.board[rowIndex][cellIndex]);
+      }
+
+      currentRowOffset += rowOffset;
+      currentCellOffset += cellOffset;
+    }
+
+    return line;
   }
 
   _clear() {
