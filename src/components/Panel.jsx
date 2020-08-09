@@ -1,7 +1,7 @@
 import React from 'react'
 
 import 'styles/Panel.css'
-import { PLAYERS_COLORS, PLAYERS_TAGS } from 'js/constants';
+import { PLAYERS_COLORS, PLAYERS_TAGS } from 'js/constants'
 
 const Panel = ({currentPlayer}) => {
   const playerColor = (() => {

@@ -1,5 +1,5 @@
 import WayCreator from './WayCreator'
-import { PLAYERS_TAGS } from 'js/constants';
+import { PLAYERS_TAGS } from 'js/constants'
 
 const wayCreator = new WayCreator();
 

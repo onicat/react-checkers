@@ -1,8 +1,8 @@
 import React from 'react'
 
 import 'styles/Checker.css'
-import { PLAYERS_TAGS, PLAYERS_COLORS } from 'js/constants';
-import { computeClasses } from 'js/utils';
+import { PLAYERS_TAGS, PLAYERS_COLORS } from 'js/constants'
+import { computeClasses } from 'js/utils'
 
 const Checker = ({checker, selectChecker}) => {
   const color = (() => {

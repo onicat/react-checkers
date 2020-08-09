@@ -1,7 +1,7 @@
 import { produce } from 'immer'
 
-import { PLAYERS_TAGS } from 'js/constants';
-import actionTypes from 'redux/actionTypes';
+import { PLAYERS_TAGS } from 'js/constants'
+import actionTypes from 'redux/actionTypes'
 
 const initialState = PLAYERS_TAGS.PLAYER1;
 

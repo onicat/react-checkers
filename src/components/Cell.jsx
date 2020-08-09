@@ -2,7 +2,7 @@ import React from 'react'
 
 import 'styles/Cell.css'
 import Checker from 'components/Checker'
-import { computeClasses } from 'js/utils';
+import { computeClasses } from 'js/utils'
 
 const Cell = ({cell, way, selectChecker, goToWay}) => {
   const className = computeClasses({

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import { getBoard } from 'redux/selectors';
-import Cell from './Cell';
-import Row from './Row';
-import WaysCreator from 'js/creators/WaysCreator';
+import { getBoard } from 'redux/selectors'
+import Cell from './Cell'
+import Row from './Row'
+import WaysCreator from 'js/creators/WaysCreator'
 import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
 
 const Board = ({
