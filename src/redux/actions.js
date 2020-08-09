@@ -10,3 +10,7 @@ export const removeChecker = (checker) => ({
   type: actionTypes.REMOVE_CHECKER,
   checker
 });
+
+export const togglePlayer = () => ({
+  type: actionTypes.TOGGLE_PLAYER
+});
