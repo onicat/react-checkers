@@ -17,12 +17,16 @@ class WaysCreator {
       return this.ways;
     }
 
-    const direction = (
-      (checker.player === PLAYERS_TAGS.PLAYER1) ? 'down' : 'up'
-    );
-
-    this._setJumps(checker, direction);
-    this._setEating(checker);
+    if (checker.type === 'soldier') {
+      const direction = (
+        (checker.player === PLAYERS_TAGS.PLAYER1) ? 'down' : 'up'
+      );
+  
+      this._setJumps(checker, direction);
+      this._setEating(checker);
+    } else {
+      this._setLineWays(checker);
+    }
 
     const ways = this.ways;
     this._clear();
@@ -80,6 +84,49 @@ class WaysCreator {
     }
   }
 
+  _setLineWays(checker) {
+    const wayLines = [
+      this._getCellsLine(checker, -1, -1),
+      this._getCellsLine(checker, -1, 1),
+      this._getCellsLine(checker, 1, -1),
+      this._getCellsLine(checker, 1, 1)
+    ];
+
+    for (let line of wayLines) {
+      let eatenCheckerCell = null;
+      
+      for (let cell of line) {
+        let way = null;
+        
+        if (eatenCheckerCell === null) {
+          if (cell.checker === null) {
+            way = wayCreator.create('jump', cell); 
+          } else if (cell.checker.player !== checker.player) {
+            eatenCheckerCell = cell;
+          } else {
+            break;
+          }
+        } else {
+          if (cell.checker === null) {
+            way = wayCreator.create('eating', cell, eatenCheckerCell.checker);
+
+            if (!this.ways.has(eatenCheckerCell)) {
+              const eatenWay = wayCreator.create('eaten');
+              
+              this.ways.set(eatenCheckerCell, eatenWay);
+            }
+          } else {
+            break;
+          }
+        }
+
+        if (way) {
+          this.ways.set(cell, way);
+        }
+      }
+    }
+  }
+
   _isCellExist(rowIndex, cellIndex) {
     if (
       rowIndex >= 0 &&
@@ -93,8 +140,7 @@ class WaysCreator {
     }
   }
 
-  // At this moment only for line length = 2 (for 'soldiers')
-  _getCellsLine(relatedChecker, rowOffset, cellOffset, lineLength = 2) {
+  _getCellsLine(relatedChecker, rowOffset, cellOffset, lineLength = Infinity) {
     let currentRowOffset = rowOffset;
     let currentCellOffset = cellOffset;
     let line = [];
@@ -102,10 +148,12 @@ class WaysCreator {
     for (let iteration = 0; iteration < lineLength; iteration++) {
       const rowIndex = relatedChecker.rowIndex + currentRowOffset;
       const cellIndex = relatedChecker.cellIndex + currentCellOffset;
-
-      if (this._isCellExist(rowIndex, cellIndex)) {
-        line.push(this.board[rowIndex][cellIndex]);
+      
+      if (!this._isCellExist(rowIndex, cellIndex)) {
+        return line;
       }
+     
+      line.push(this.board[rowIndex][cellIndex]);
 
       currentRowOffset += rowOffset;
       currentCellOffset += cellOffset;
