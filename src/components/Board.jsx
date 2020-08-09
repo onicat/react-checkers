@@ -1,15 +1,29 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
-import { getBoard } from 'redux/selectors';
+import { getBoard, getCurrentPlayer } from 'redux/selectors';
 import Cell from './Cell';
 import Row from './Row';
 import WaysCreator from 'js/creators/WaysCreator';
-import { moveChecker, removeChecker } from 'redux/actions'
+import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
 
-const Board = ({board, moveChecker, removeChecker}) => {
+const Board = ({
+  board,
+  currentPlayer,
+  moveChecker,
+  removeChecker,
+  togglePlayer
+}) => {
   const [selectedChecker, selectChecker] = useState(null);
   
+  const restrictedSelectChecker = checker => {
+    if (checker && checker.player !== currentPlayer) {
+      return;
+    }
+
+    selectChecker(checker);
+  }
+
   const waysCreator = new WaysCreator(board);
   const ways = waysCreator.create(selectedChecker);
 
@@ -24,6 +38,7 @@ const Board = ({board, moveChecker, removeChecker}) => {
     }
 
     selectChecker(null);
+    togglePlayer();
   };
 
   const renderRows = () => {
@@ -38,7 +53,7 @@ const Board = ({board, moveChecker, removeChecker}) => {
         
         cells.push(
           <Cell 
-            selectChecker={selectChecker}
+            selectChecker={restrictedSelectChecker}
             goToWay={goToWay}
             key={cellIndex}
             cell={cell}
@@ -63,10 +78,11 @@ const Board = ({board, moveChecker, removeChecker}) => {
 };
 
 const mapStateToProps = (state) => ({
-  board: getBoard(state)
+  board: getBoard(state),
+  currentPlayer: getCurrentPlayer(state)
 });
 
 export default connect(
   mapStateToProps,
-  { moveChecker, removeChecker }
+  { moveChecker, removeChecker, togglePlayer }
 )(Board);
