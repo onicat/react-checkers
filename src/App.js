@@ -1,13 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Board from 'components/Board'
+import Panel from 'components/Panel'
+import { getCurrentPlayer } from 'redux/selectors'
+import 'App.css'
 
-const App = () => {
+const App = ({currentPlayer}) => {
   return (
-    <React.Fragment>
+    <div className='App'>
+      <Panel currentPlayer={currentPlayer}/>
       <Board/>
-    </React.Fragment>
+    </div>
   )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  currentPlayer: getCurrentPlayer(state)
+});
+
+export default connect(
+  mapStateToProps
+)(App);

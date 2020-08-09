@@ -7,4 +7,9 @@ export const INITIAL_SETTINGS = Object.freeze({
 export const PLAYERS_TAGS = Object.freeze({
   PLAYER1: 'player1',
   PLAYER2: 'player2'
-}); 
+});
+
+export const PLAYERS_COLORS = Object.freeze({
+  PLAYER1: '#00A1FB',
+  PLAYER2: '#00E8A8'
+});

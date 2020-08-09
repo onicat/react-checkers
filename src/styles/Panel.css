@@ -1,0 +1,12 @@
+.Panel {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  background-color: #3B3B3B;
+}
+
+.Panel__text {
+  margin: 0;
+  padding: 0 5px;
+  font-size: 1.2em;
+}
