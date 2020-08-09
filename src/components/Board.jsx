@@ -43,7 +43,8 @@ const Board = ({board, moveChecker, removeChecker}) => {
             key={cellIndex}
             cell={cell}
             way={way}
-          />)
+          />
+        )
       }
       
       rows.push(<Row key={rowIndex} cells={cells}/>);
