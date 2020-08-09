@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
-import { getBoard, getCurrentPlayer } from 'redux/selectors';
+import { getBoard } from 'redux/selectors';
 import Cell from './Cell';
 import Row from './Row';
 import WaysCreator from 'js/creators/WaysCreator';
@@ -78,8 +78,7 @@ const Board = ({
 };
 
 const mapStateToProps = (state) => ({
-  board: getBoard(state),
-  currentPlayer: getCurrentPlayer(state)
+  board: getBoard(state)
 });
 
 export default connect(

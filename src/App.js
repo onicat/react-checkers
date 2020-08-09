@@ -10,7 +10,7 @@ const App = ({currentPlayer}) => {
   return (
     <div className='App'>
       <Panel currentPlayer={currentPlayer}/>
-      <Board/>
+      <Board currentPlayer={currentPlayer}/>
     </div>
   )
 }
