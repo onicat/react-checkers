@@ -17,11 +17,9 @@ const Board = ({
   const [selectedChecker, selectChecker] = useState(null);
   
   const restrictedSelectChecker = checker => {
-    if (checker && checker.player !== currentPlayer) {
-      return;
+    if (checker && checker.player === currentPlayer) {
+      selectChecker(checker);
     }
-
-    selectChecker(checker);
   }
 
   const waysCreator = new WaysCreator(board);
