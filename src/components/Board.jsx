@@ -6,6 +6,7 @@ import Cell from './Cell'
 import Row from './Row'
 import WaysCreator from 'js/creators/WaysCreator'
 import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
+import 'styles/Board.css'
 
 const Board = ({
   board,
@@ -67,7 +68,7 @@ const Board = ({
   }
   
   return (
-    <table>
+    <table className='Board'>
       <tbody>
         {renderRows()}
       </tbody>
