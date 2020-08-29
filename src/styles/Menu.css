@@ -1,6 +1,7 @@
 .Menu {
   height: 30px;
   margin-bottom: 2px;
+  margin-left: 2px;
   display: flex;
   align-items: center;
   background-color: #2C2C2C;
