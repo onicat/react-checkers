@@ -18,7 +18,7 @@ const Cell = ({cell, way, selectChecker, goToWay}) => {
   );
 
   return (
-    <td 
+    <div 
       className={className}
       onClick={clickHandler}
     >
@@ -29,7 +29,7 @@ const Cell = ({cell, way, selectChecker, goToWay}) => {
         /> :
         null
       }
-    </td>
+    </div>
   );
 };
 

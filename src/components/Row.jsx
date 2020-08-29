@@ -1,10 +1,12 @@
 import React from 'react'
 
+import 'styles/Row.css'
+
 const Row = ({cells}) => {
   return (
-    <tr>
+    <div className='Row'>
       {cells}
-    </tr>
+    </div>
   )
 };
 

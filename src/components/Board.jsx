@@ -68,11 +68,9 @@ const Board = ({
   }
   
   return (
-    <table className='Board'>
-      <tbody>
-        {renderRows()}
-      </tbody>
-    </table>
+    <div className='Board'>
+      {renderRows()}
+    </div>
   )
 };
 

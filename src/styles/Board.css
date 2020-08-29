@@ -1,3 +1,4 @@
 .Board {
+  display: inline-block;
   border-collapse: collapse;
 }
