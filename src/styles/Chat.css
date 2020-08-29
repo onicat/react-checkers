@@ -1,0 +1,27 @@
+.Chat {
+  width: 400px;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #2C2C2C;
+}
+
+.Chat__messages-block {
+  height: 90%;
+  overflow: auto;
+}
+
+.Chat__interaction-block {
+  margin-top: 5px;
+}
+
+.Chat__input {
+  width: 330px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: lighter;
+  background-color: #1D1D1D;
+  border: 1px solid #1D1D1D;
+  border-radius: 5px;
+  color: #E5E5E5;
+}
