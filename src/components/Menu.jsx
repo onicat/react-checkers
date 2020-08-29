@@ -5,7 +5,7 @@ import Button from './Button'
 
 const Menu = () => {
   return (
-    <div class='Menu'>
+    <div className='Menu'>
       <Button>Create room</Button>
       <Button>Join</Button>
     </div>
