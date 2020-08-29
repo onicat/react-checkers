@@ -5,11 +5,11 @@
 }
 
 .Cell_active {
-  background-color: #262626;
+  background-color: #1D1D1D;
 }
 
 .Cell_passive {
-  background-color: #3B3B3B;
+  background-color: #2C2C2C;
 }
 
 .Cell_way_jump {
