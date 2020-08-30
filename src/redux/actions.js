@@ -15,6 +15,7 @@ export const togglePlayer = () => ({
   type: actionTypes.TOGGLE_PLAYER
 });
 
-export const changeOnlineTag = () => ({
-  type: actionTypes.CHANGE_ONLINE_TAG
+export const changeOnlineTag = (playerTag) => ({
+  type: actionTypes.CHANGE_ONLINE_TAG,
+  playerTag
 });
