@@ -8,6 +8,7 @@ const Menu = () => {
     <div className='Menu'>
       <Button>Create room</Button>
       <Button>Join</Button>
+      <Button>Exit</Button>
     </div>
   )
 };
