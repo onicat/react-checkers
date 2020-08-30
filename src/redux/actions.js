@@ -14,3 +14,7 @@ export const removeChecker = (checker) => ({
 export const togglePlayer = () => ({
   type: actionTypes.TOGGLE_PLAYER
 });
+
+export const changeOnlineTag = () => ({
+  type: actionTypes.CHANGE_ONLINE_TAG
+});
