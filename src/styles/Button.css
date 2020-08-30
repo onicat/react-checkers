@@ -7,3 +7,8 @@
   font-family: 'Roboto', sans-serif;
   color: #E5E5E5;
 }
+
+.Button_disabled {
+  opacity: 0.4;
+  outline: none;
+}
