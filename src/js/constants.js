@@ -17,5 +17,7 @@ export const PLAYERS_COLORS = Object.freeze({
 export const SERVER_URL = 'http://localhost:3005/';
 
 export const STAGES = Object.freeze({
-  OFFLINE: 'OFFLINE'
+  OFFLINE: 'OFFLINE',
+  CONNECTING: 'CONNECTING',
+  WAITING_FOR_PLAYER: 'WAITING_FOR_PLAYER'
 });
