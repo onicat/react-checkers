@@ -19,3 +19,8 @@ export const changeOnlineTag = (playerTag) => ({
   type: actionTypes.CHANGE_ONLINE_TAG,
   playerTag
 });
+
+export const changeStage = (stage) => ({
+  type: actionTypes.CHANGE_STAGE,
+  stage
+});
