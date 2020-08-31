@@ -11,17 +11,6 @@
   overflow: auto;
 }
 
-.Chat__interaction-block {
+.Chat__input-form {
   margin-top: 5px;
-}
-
-.Chat__input {
-  width: 330px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1em;
-  font-weight: lighter;
-  background-color: #1D1D1D;
-  border: 1px solid #1D1D1D;
-  border-radius: 5px;
-  color: #E5E5E5;
 }
