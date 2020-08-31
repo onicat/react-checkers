@@ -13,3 +13,5 @@ export const PLAYERS_COLORS = Object.freeze({
   PLAYER1: '#00A1FB',
   PLAYER2: '#00E8A8'
 });
+
+export const SERVER_URL = 'http://localhost:3005/';
