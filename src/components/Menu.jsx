@@ -11,6 +11,21 @@ import requestActions from 'js/requestActions';
 const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
   const [inputValue, changeInputValue] = useState('');
   
+  const join = () => {
+    webSocketRef.current = new WebSocket(SERVER_WS_URL);
+    changeOnlineTag(PLAYERS_TAGS.PLAYER2);
+    changeStage(STAGES.CONNECTING);
+
+    webSocketRef.current.addEventListener('open', () => {
+      webSocketRef.current.send(requestActions.join(inputValue));
+    });
+
+    webSocketRef.current.addEventListener('error', () => {
+      changeStage(STAGES.OFFLINE);
+      changeOnlineTag(null);
+    });
+  }
+
   const createRoom = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER1);
@@ -43,6 +58,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
         changeInputValue={changeInputValue}
       />
       <Button
+        onClick={join}
         disabled={stage !== STAGES.OFFLINE}
       >
         Join
