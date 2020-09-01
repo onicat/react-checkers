@@ -6,3 +6,10 @@
   align-items: center;
   background-color: #2C2C2C;
 }
+
+.Menu__divider {
+  margin: 0 2px;
+  height: 80%;
+  width: 2px;
+  background-color: #1D1D1D;
+}

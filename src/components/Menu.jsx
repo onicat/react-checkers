@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import 'styles/Menu.css'
 import Button from './Button'
-import MenuDivider from './MenuDivider';
 import Input from './Input';
 import { SERVER_WS_URL, STAGES, PLAYERS_TAGS } from 'js/constants';
 import { changeOnlineTag, changeStage } from 'redux/actions'
@@ -34,14 +33,14 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       >
         Create room
       </Button>
-      <MenuDivider/>
+      <div className='Menu__divider'/>
       <Input type='short' buttonText='Join'></Input>
       <Button
         disabled={stage !== STAGES.OFFLINE}
       >
         Join
       </Button>
-      <MenuDivider/>
+      <div className='Menu__divider'/>
       <Button
         disabled={stage === STAGES.OFFLINE}
       >
