@@ -58,7 +58,7 @@ const Chat = ({stage, webSocketRef}) => {
         buttonText='Send'
         inputValue={inputValue}
         changeInputValue={changeInputValue}
-      ></Input>
+      />
       <Button>Send</Button>
     </div>
   )
