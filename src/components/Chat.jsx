@@ -1,7 +1,6 @@
 import React from 'react'
 
 import 'styles/Chat.css'
-import InputForm from './InputForm'
 import Input from './Input'
 import Button from './Button';
 
