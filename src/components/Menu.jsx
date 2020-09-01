@@ -45,6 +45,11 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       changeStage(STAGES.OFFLINE);
       changeOnlineTag(null);
     });
+
+    webSocketRef.current.addEventListener('close', () => {
+      changeStage(STAGES.OFFLINE);
+      changeOnlineTag(null);
+    });
   }
   
   return (
