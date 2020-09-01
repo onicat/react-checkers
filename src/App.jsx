@@ -1,4 +1,5 @@
 import React from 'react'
+import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 
 import Board from 'components/Board'
@@ -9,6 +10,7 @@ import Menu from 'components/Menu'
 import Chat from 'components/Chat'
 
 const App = ({currentPlayer}) => {
+  const webSocketRef = useRef(null);
   return (
     <div className='App'>
       <Menu/>
