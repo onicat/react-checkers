@@ -35,6 +35,10 @@ const Chat = ({stage, webSocketRef}) => {
   useEffect(() => {
     if (webSocketRef.current === null) return;
 
+    webSocketRef.current.addEventListener('close', (event) => {
+      writeMessage('System', event.reason);
+    });
+
     webSocketRef.current.addEventListener('message', (msg) => {
       const {type, payload} = JSON.parse(msg.data);
 
