@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
 import 'styles/Menu.css'
@@ -9,6 +9,8 @@ import { changeOnlineTag, changeStage } from 'redux/actions'
 import requestActions from 'js/requestActions';
 
 const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
+  const [inputValue, changeInputValue] = useState('');
+  
   const createRoom = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER1);
@@ -34,7 +36,12 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
         Create room
       </Button>
       <div className='Menu__divider'/>
-      <Input type='short' buttonText='Join'></Input>
+      <Input 
+        type='short' 
+        buttonText='Join'
+        inputValue={inputValue}
+        changeInputValue={changeInputValue}
+      />
       <Button
         disabled={stage !== STAGES.OFFLINE}
       >
