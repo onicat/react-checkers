@@ -2,6 +2,8 @@ import React from 'react'
 
 import 'styles/Chat.css'
 import InputForm from './InputForm'
+import Input from './Input'
+import Button from './Button';
 
 const Chat = () => {
   return (
@@ -9,11 +11,14 @@ const Chat = () => {
       <div className='Chat__messages-block'>
 
       </div>
-      <InputForm
+      <Input
         className='Chat__input-form'
         type='long'
         buttonText='Send'
-      ></InputForm>
+        inputValue={inputValue}
+        changeInputValue={changeInputValue}
+      ></Input>
+      <Button>Send</Button>
     </div>
   )
 };

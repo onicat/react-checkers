@@ -1,4 +1,4 @@
-.InputForm__input {
+.Input {
   margin: 0 2px;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -9,10 +9,10 @@
   color: #E5E5E5;
 }
 
-.InputForm__input_short {
+.Input_short {
   width: 150px;
 }
 
-.InputForm__input_long {
+.Input_long {
   width: 325px;
 }
