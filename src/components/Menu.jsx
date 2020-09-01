@@ -6,9 +6,10 @@ import Button from './Button'
 import MenuDivider from './MenuDivider';
 import Input from './Input';
 import { SERVER_WS_URL, STAGES, PLAYERS_TAGS } from 'js/constants';
+import { changeOnlineTag, changeStage } from 'redux/actions'
 import requestActions from 'js/requestActions';
 
-const Menu = () => {
+const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
   const createRoom = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER1);
@@ -27,19 +28,30 @@ const Menu = () => {
   
   return (
     <div className='Menu'>
-      <Button>Create room</Button>
       <Button 
+        disabled={stage !== STAGES.OFFLINE}
         onClick={createRoom}
       >
         Create room
       </Button>
       <MenuDivider/>
       <Input type='short' buttonText='Join'></Input>
-      <Button>Join</Button>
+      <Button
+        disabled={stage !== STAGES.OFFLINE}
+      >
+        Join
+      </Button>
       <MenuDivider/>
-      <Button>Exit</Button>
+      <Button
+        disabled={stage === STAGES.OFFLINE}
+      >
+        Exit
+      </Button>
     </div>
   )
 };
 
-export default Menu;
+export default connect(
+  null,
+  {changeOnlineTag, changeStage}
+)(Menu);
