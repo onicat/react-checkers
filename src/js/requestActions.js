@@ -5,6 +5,13 @@ class RequestActions {
       payload: null
     });
   }
+
+  join(id) {
+    return JSON.stringify({
+      type: 'JOIN',
+      payload: {id}
+    });
+  }
 }
 
 export default new RequestActions();
