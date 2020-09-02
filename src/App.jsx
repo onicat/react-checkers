@@ -9,7 +9,13 @@ import { getCurrentPlayer, getStage } from 'redux/selectors'
 import 'App.css'
 import Menu from 'components/Menu'
 import Chat from 'components/Chat'
-import { resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag } from 'redux/actions'
+import {
+  resetBoard,
+  resetCurrentPlayer,
+  changeStage,
+  changeOnlineTag,
+  changeRoomId
+} from 'redux/actions'
 import { STAGES } from 'js/constants'
 
 const App = ({
@@ -18,7 +24,8 @@ const App = ({
   resetBoard,
   resetCurrentPlayer, 
   changeStage,
-  changeOnlineTag
+  changeOnlineTag,
+  changeRoomId
 }) => {
   const webSocketRef = useRef(null);
 
@@ -32,22 +39,31 @@ const App = ({
       }
 
       changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null)
+      changeOnlineTag(null);
+      changeRoomId(null)
     });
 
     webSocketRef.current.addEventListener('error', (msg) => {
       changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null)
+      changeOnlineTag(null);
+      changeRoomId(null);
     });
 
     webSocketRef.current.addEventListener('message', (msg) => {
-      const {type} = JSON.parse(msg.data);
+      const {type, payload} = JSON.parse(msg.data);
 
       switch(type) {
         case 'GAME_READY': {
           resetBoard();
           resetCurrentPlayer();
           changeStage(STAGES.ONLINE);
+
+          break;
+        }
+
+        case 'SEND_ROOM_ID': 
+        case 'ROOM_CREATED': {
+          changeRoomId(payload.id);
 
           break;
         }
@@ -76,6 +92,11 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-  {resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag}
+  mapStateToProps, {
+    resetBoard,
+    resetCurrentPlayer,
+    changeStage,
+    changeOnlineTag,
+    changeRoomId
+  }
 )(App);
