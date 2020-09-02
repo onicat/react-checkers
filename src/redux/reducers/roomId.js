@@ -1,5 +1,4 @@
 import produce from 'immer'
-
 import actionTypes from 'redux/actionTypes';
 
 const initialState = null;
