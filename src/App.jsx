@@ -9,14 +9,36 @@ import { getCurrentPlayer, getStage } from 'redux/selectors'
 import 'App.css'
 import Menu from 'components/Menu'
 import Chat from 'components/Chat'
-import { resetBoard, resetCurrentPlayer, changeStage } from 'redux/actions'
+import { resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag } from 'redux/actions'
 import { STAGES } from 'js/constants'
 
-const App = ({currentPlayer, stage, resetBoard, resetCurrentPlayer, changeStage}) => {
+const App = ({
+  currentPlayer,
+  stage,
+  resetBoard,
+  resetCurrentPlayer, 
+  changeStage,
+  changeOnlineTag
+}) => {
   const webSocketRef = useRef(null);
 
   useEffect(() => {
     if (webSocketRef.current === null) return;
+
+    webSocketRef.current.addEventListener('close', (msg) => {
+      if (stage === STAGES.ONLINE) {
+        resetBoard();
+        resetCurrentPlayer();
+      }
+
+      changeStage(STAGES.OFFLINE);
+      changeOnlineTag(null)
+    });
+
+    webSocketRef.current.addEventListener('error', (msg) => {
+      changeStage(STAGES.OFFLINE);
+      changeOnlineTag(null)
+    });
 
     webSocketRef.current.addEventListener('message', (msg) => {
       const {type} = JSON.parse(msg.data);
@@ -55,5 +77,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {resetBoard, resetCurrentPlayer, changeStage}
+  {resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag}
 )(App);
