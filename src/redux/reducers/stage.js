@@ -13,6 +13,7 @@ const stage = produce((state, action) => {
         case STAGES.OFFLINE: return STAGES.OFFLINE;
         case STAGES.CONNECTING: return STAGES.CONNECTING;
         case STAGES.WAITING_FOR_PLAYER: return STAGES.WAITING_FOR_PLAYER;
+        case STAGES.ONLINE: return STAGES.ONLINE;
       }
 
     }
