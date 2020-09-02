@@ -19,5 +19,6 @@ export const SERVER_WS_URL = 'ws://localhost:3005/';
 export const STAGES = Object.freeze({
   OFFLINE: 'OFFLINE',
   CONNECTING: 'CONNECTING',
-  WAITING_FOR_PLAYER: 'WAITING_FOR_PLAYER'
+  WAITING_FOR_PLAYER: 'WAITING_FOR_PLAYER',
+  ONLINE: 'ONLINE'
 });
