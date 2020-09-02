@@ -1,4 +1,6 @@
-import React, { useRef } from 'react'
+/*eslint-disable default-case, react-hooks/exhaustive-deps*/
+
+import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import Board from 'components/Board'
@@ -7,9 +9,30 @@ import { getCurrentPlayer, getStage } from 'redux/selectors'
 import 'App.css'
 import Menu from 'components/Menu'
 import Chat from 'components/Chat'
+import { resetBoard, resetCurrentPlayer, changeStage } from 'redux/actions'
+import { STAGES } from 'js/constants'
 
-const App = ({currentPlayer, stage}) => {
+const App = ({currentPlayer, stage, resetBoard, resetCurrentPlayer, changeStage}) => {
   const webSocketRef = useRef(null);
+
+  useEffect(() => {
+    if (webSocketRef.current === null) return;
+
+    webSocketRef.current.addEventListener('message', (msg) => {
+      const {type} = JSON.parse(msg.data);
+
+      switch(type) {
+        case 'GAME_READY': {
+          resetBoard();
+          resetCurrentPlayer();
+          changeStage(STAGES.ONLINE);
+
+          break;
+        }
+      }
+    });
+
+  }, [webSocketRef.current]);
 
   return (
     <div className='App'>
@@ -31,5 +54,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {resetBoard, resetCurrentPlayer, changeStage}
 )(App);
