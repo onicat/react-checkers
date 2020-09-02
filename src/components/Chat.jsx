@@ -52,7 +52,7 @@ const Chat = ({stage, webSocketRef}) => {
       const {type, payload} = JSON.parse(msg.data);
 
       switch(type) {
-        case 'SEND_ROOM_ID': {
+        case 'ROOM_CREATED': {
           writeMessage('System', `Room created with id ${payload.id}`)
           break;
         }
