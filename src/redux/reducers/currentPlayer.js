@@ -14,6 +14,10 @@ const currentPlayer = produce((state, action) => {
         return PLAYERS_TAGS.PLAYER1;
       }
     }
+
+    case actionTypes.RESET_CURRENT_PLAYER: {
+      return PLAYERS_TAGS.PLAYER1; 
+    }
   }
 }, initialState);
 
