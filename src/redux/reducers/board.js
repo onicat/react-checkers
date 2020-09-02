@@ -50,5 +50,13 @@ export default produce((state, action) => {
       state[checker.rowIndex][checker.cellIndex].checker = null;
       break;
     }
+
+    case actionTypes.RESET_BOARD: {
+      return boardCreator.create(
+        INITIAL_SETTINGS.BOARD_WIDTH,
+        INITIAL_SETTINGS.BOARD_HEIGHT,
+        INITIAL_SETTINGS.CHECKERS_PER_PLAYER
+      );
+    }
   }
 }, initialState);
