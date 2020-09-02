@@ -12,6 +12,13 @@ class RequestActions {
       payload: {id}
     });
   }
+
+  sendChatMessage(roomId, senderTag) {
+    return JSON.stringify({
+      type: 'SEND_CHAT_MESSAGE',
+      payload: {roomId, senderTag}
+    });
+  }
 }
 
 export default new RequestActions();
