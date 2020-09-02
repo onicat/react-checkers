@@ -32,3 +32,8 @@ export const resetBoard = () => ({
 export const resetCurrentPlayer = () => ({
   type: actionTypes.RESET_CURRENT_PLAYER
 });
+
+export const changeRoomId = (id) => ({
+  type: actionTypes.CHANGE_ROOM_ID,
+  id
+});
