@@ -29,6 +29,11 @@ const Chat = ({stage, webSocketRef}) => {
         writeMessage('System', 'Connecting...');
         break;
       }
+
+      case STAGES.ONLINE: {
+        writeMessage('System', 'The game is ready. Play!');
+        break;
+      }
     }
   }, [stage]);
 
