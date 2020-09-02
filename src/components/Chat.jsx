@@ -41,7 +41,11 @@ const Chat = ({stage, webSocketRef}) => {
     if (webSocketRef.current === null) return;
 
     webSocketRef.current.addEventListener('close', (event) => {
-      writeMessage('System', event.reason);
+      if (event.reason.length === 0) {
+        writeMessage('System', 'The server is not available');
+      } else {
+        writeMessage('System', event.reason);
+      }
     });
 
     webSocketRef.current.addEventListener('message', (msg) => {
