@@ -19,16 +19,6 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     webSocketRef.current.addEventListener('open', () => {
       webSocketRef.current.send(requestActions.join(inputValue));
     });
-
-    webSocketRef.current.addEventListener('error', () => {
-      changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null);
-    });
-
-    webSocketRef.current.addEventListener('close', () => {
-      changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null);
-    });
   }
 
   const createRoom = () => {
@@ -39,16 +29,6 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     webSocketRef.current.addEventListener('open', () => {
       webSocketRef.current.send(requestActions.createRoom());
       changeStage(STAGES.WAITING_FOR_PLAYER);
-    });
-
-    webSocketRef.current.addEventListener('error', () => {
-      changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null);
-    });
-
-    webSocketRef.current.addEventListener('close', () => {
-      changeStage(STAGES.OFFLINE);
-      changeOnlineTag(null);
     });
   }
   
