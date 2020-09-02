@@ -24,3 +24,11 @@ export const changeStage = (stage) => ({
   type: actionTypes.CHANGE_STAGE,
   stage
 });
+
+export const resetBoard = () => ({
+  type: actionTypes.RESET_BOARD
+});
+
+export const resetCurrentPlayer = () => ({
+  type: actionTypes.RESET_CURRENT_PLAYER
+});
