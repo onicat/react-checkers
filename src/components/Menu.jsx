@@ -1,3 +1,5 @@
+/*eslint-disable default-case*/
+
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 
@@ -28,7 +30,18 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
 
     webSocketRef.current.addEventListener('open', () => {
       webSocketRef.current.send(requestActions.createRoom());
-      changeStage(STAGES.WAITING_FOR_PLAYER);
+    });
+
+    webSocketRef.current.addEventListener('message', (msg) => {
+      const {type} = JSON.parse(msg.data);
+
+      switch(type) {
+        case 'ROOM_CREATED': {
+          changeStage(STAGES.WAITING_FOR_PLAYER);
+
+          break;
+        }
+      }
     });
   }
   
