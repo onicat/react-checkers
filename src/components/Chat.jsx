@@ -7,8 +7,10 @@ import Input from './Input'
 import Message from './Message';
 import Button from './Button';
 import { STAGES } from 'js/constants';
+import { connect } from 'react-redux';
+import { getOnlineTag } from 'redux/selectors';
 
-const Chat = ({stage, webSocketRef}) => {
+const Chat = ({stage, webSocketRef, onlineTag}) => {
   const [messages, changeMessages] = useState([]);
   const [inputValue, changeInputValue] = useState('');
 
@@ -77,4 +79,10 @@ const Chat = ({stage, webSocketRef}) => {
   )
 };
 
-export default Chat;
+const mapStateToProps = state => ({
+  onlineTag: getOnlineTag(state)
+});
+
+export default connect(
+  mapStateToProps
+)(Chat);
