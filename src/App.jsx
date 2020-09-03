@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import Board from 'components/Board'
 import Panel from 'components/Panel'
-import { getCurrentPlayer, getStage } from 'redux/selectors'
+import { getCurrentPlayer, getStage, getOnlineTag } from 'redux/selectors'
 import 'App.css'
 import Menu from 'components/Menu'
 import Chat from 'components/Chat'
@@ -15,6 +15,7 @@ import { STAGES } from 'js/constants'
 const App = ({
   currentPlayer,
   stage,
+  onlineTag,
   resetBoard,
   resetCurrentPlayer, 
   changeStage,
@@ -64,7 +65,7 @@ const App = ({
         <Board currentPlayer={currentPlayer}/>
       </div>
       <div className='App__module'>
-        <Chat webSocketRef={webSocketRef} stage={stage}/>
+        <Chat onlineTag={onlineTag} webSocketRef={webSocketRef} stage={stage}/>
       </div>
     </div>
   )
@@ -72,7 +73,8 @@ const App = ({
 
 const mapStateToProps = state => ({
   currentPlayer: getCurrentPlayer(state),
-  stage: getStage(state)
+  stage: getStage(state),
+  onlineTag: getOnlineTag(state)
 });
 
 export default connect(
