@@ -63,6 +63,12 @@ const Board = ({
 
           break;
         }
+
+        case 'GAME_READY': {
+          selectChecker(null);
+
+          break;
+        }
       }
     });
   }, [webSocketRef.current]);
