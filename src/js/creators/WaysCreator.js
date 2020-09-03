@@ -48,13 +48,13 @@ class WaysCreator {
     }
 
     if (leftCell && leftCell.checker === null) {
-      const way = wayCreator.create('jump', leftCell);
+      const way = wayCreator.create('jump', checker, leftCell);
 
       this.ways.set(leftCell, way);
     }
 
     if (rightCell && rightCell.checker === null) {
-      const way = wayCreator.create('jump', rightCell);
+      const way = wayCreator.create('jump', checker, rightCell);
 
       this.ways.set(rightCell, way);
     }    
@@ -75,7 +75,7 @@ class WaysCreator {
         line[0].checker.player !== checker.player &&
         line[1].checker === null
       ) {
-        const eatingWay = wayCreator.create('eating', line[1], line[0]);
+        const eatingWay = wayCreator.create('eating', checker, line[1], line[0]);
         const eatenWay = wayCreator.create('eaten');
 
         this.ways.set(line[0], eatenWay);
@@ -100,7 +100,7 @@ class WaysCreator {
         
         if (eatenCheckerCell === null) {
           if (cell.checker === null) {
-            way = wayCreator.create('jump', cell); 
+            way = wayCreator.create('jump', checker, cell); 
           } else if (cell.checker.player !== checker.player) {
             eatenCheckerCell = cell;
           } else {
@@ -108,7 +108,7 @@ class WaysCreator {
           }
         } else {
           if (cell.checker === null) {
-            way = wayCreator.create('eating', cell, eatenCheckerCell.checker);
+            way = wayCreator.create('eating', checker, cell, eatenCheckerCell.checker);
 
             if (!this.ways.has(eatenCheckerCell)) {
               const eatenWay = wayCreator.create('eaten');
