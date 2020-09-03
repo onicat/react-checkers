@@ -17,7 +17,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     changeStage(STAGES.CONNECTING);
 
     webSocketRef.current.addEventListener('open', () => {
-      webSocketRef.current.send(requestActions.join(inputValue));
+      webSocketRef.current.send(requestActions.join(inputValue, PLAYERS_TAGS.PLAYER2));
     });
   }
 
@@ -27,7 +27,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     changeStage(STAGES.CONNECTING);
 
     webSocketRef.current.addEventListener('open', () => {
-      webSocketRef.current.send(requestActions.createRoom());
+      webSocketRef.current.send(requestActions.createRoom(PLAYERS_TAGS.PLAYER1));
       changeStage(STAGES.WAITING_FOR_PLAYER);
     });
   }

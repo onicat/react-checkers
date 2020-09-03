@@ -1,15 +1,15 @@
 class RequestActions {
-  createRoom() {
+  createRoom(initiatorTag) {
     return JSON.stringify({
       type: 'CREATE_ROOM',
-      payload: null
+      payload: {initiatorTag}
     });
   }
 
-  join(id) {
+  join(id, initiatorTag) {
     return JSON.stringify({
       type: 'JOIN',
-      payload: {id}
+      payload: {id, initiatorTag}
     });
   }
 }
