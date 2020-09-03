@@ -27,12 +27,13 @@ const Board = ({
 
   const goToWay = (way) => {
     if (way.type === 'jump') {
-      moveChecker(selectedChecker, way);
+      moveChecker(way.movingChecker, way);
     }
 
     if (way.type === 'eating') {
       removeChecker(way.eatenChecker);
-      moveChecker(selectedChecker, way);
+      moveChecker(way.movingChecker, way);
+    }
     }
 
     selectChecker(null);
