@@ -32,6 +32,8 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
       onlineTag,
       inputValue
     ));
+
+    changeInputValue('');
   };
 
   useEffect(() => {
