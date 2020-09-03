@@ -11,7 +11,7 @@ import requestActions from 'js/requestActions';
 const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
   const [inputValue, changeInputValue] = useState('');
   
-  const join = () => {
+  const joinButtonHandler = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER2);
     changeStage(STAGES.CONNECTING);
@@ -21,7 +21,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     });
   }
 
-  const createRoom = () => {
+  const createRoomButtonHandler = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER1);
     changeStage(STAGES.CONNECTING);
@@ -36,7 +36,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     <div className='Menu'>
       <Button 
         disabled={stage !== STAGES.OFFLINE}
-        onClick={createRoom}
+        onClick={createRoomButtonHandler}
       >
         Create room
       </Button>
@@ -48,7 +48,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
         changeInputValue={changeInputValue}
       />
       <Button
-        onClick={join}
+        onClick={joinButtonHandler}
         disabled={stage !== STAGES.OFFLINE}
       >
         Join
