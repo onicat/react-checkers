@@ -88,7 +88,12 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
         inputValue={inputValue}
         changeInputValue={changeInputValue}
       />
-      <Button onClick={sendButtonHandler}>Send</Button>
+      <Button 
+        onClick={sendButtonHandler}
+        disabled={stage !== STAGES.ONLINE}
+      >
+        Send
+      </Button>
     </div>
   )
 };
