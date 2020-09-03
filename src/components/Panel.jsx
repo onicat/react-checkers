@@ -14,7 +14,7 @@ const Panel = ({currentPlayer}) => {
   
   return (
     <div className='Panel'>
-      <h2 className='Panel__text'>
+      <h2 className='Panel__block'>
         Player:&nbsp;
         <span style={{color: playerColor}}>
           {currentPlayer}
