@@ -25,7 +25,7 @@ const App = ({
   useEffect(() => {
     if (webSocketRef.current === null) return;
 
-    webSocketRef.current.addEventListener('close', (msg) => {
+    webSocketRef.current.addEventListener('close', () => {
       if (stage === STAGES.ONLINE) {
         resetBoard();
         resetCurrentPlayer();
@@ -35,7 +35,7 @@ const App = ({
       changeOnlineTag(null)
     });
 
-    webSocketRef.current.addEventListener('error', (msg) => {
+    webSocketRef.current.addEventListener('error', () => {
       changeStage(STAGES.OFFLINE);
       changeOnlineTag(null)
     });
