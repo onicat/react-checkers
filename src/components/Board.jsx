@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+/*eslint-disable default-case, react-hooks/exhaustive-deps*/
+
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { getBoard } from 'redux/selectors'
@@ -6,10 +8,15 @@ import Cell from './Cell'
 import Row from './Row'
 import WaysCreator from 'js/creators/WaysCreator'
 import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
+import { STAGES } from 'js/constants'
+import requestActions from 'js/requestActions'
 
 const Board = ({
   board,
   currentPlayer,
+  onlineTag,
+  stage,
+  webSocketRef,
   moveChecker,
   removeChecker,
   togglePlayer
@@ -17,9 +24,10 @@ const Board = ({
   const [selectedChecker, selectChecker] = useState(null);
   
   const restrictedSelectChecker = checker => {
-    if (checker && checker.player === currentPlayer) {
-      selectChecker(checker);
-    }
+    if (checker && checker.player !== currentPlayer) return;
+    if (stage === STAGES.ONLINE && currentPlayer !== onlineTag) return;
+
+    selectChecker(checker);
   }
 
   const waysCreator = new WaysCreator(board);
@@ -34,11 +42,30 @@ const Board = ({
       removeChecker(way.eatenChecker);
       moveChecker(way.movingChecker, way);
     }
+
+    if (stage === STAGES.ONLINE) {
+      webSocketRef.current.send(requestActions.goToWay(onlineTag, way));
     }
 
     selectChecker(null);
     togglePlayer();
   };
+
+  useEffect(() => {
+    if (webSocketRef.current === null) return;
+    
+    webSocketRef.current.addEventListener('message', (msg) => {
+      const {type, payload} = JSON.parse(msg.data);
+
+      switch(type) {
+        case 'GO_TO_WAY': {
+          goToWay(payload.way);
+
+          break;
+        }
+      }
+    });
+  }, [webSocketRef.current]);
 
   const renderRows = () => {
     const rows = [];

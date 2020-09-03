@@ -62,7 +62,12 @@ const App = ({
       <Menu stage={stage} webSocketRef={webSocketRef}/>
       <div className='App__module'>
         <Panel currentPlayer={currentPlayer}/>
-        <Board currentPlayer={currentPlayer}/>
+        <Board 
+          onlineTag={onlineTag}
+          stage={stage}
+          currentPlayer={currentPlayer}
+          webSocketRef={webSocketRef}
+        />
       </div>
       <div className='App__module'>
         <Chat onlineTag={onlineTag} webSocketRef={webSocketRef} stage={stage}/>
