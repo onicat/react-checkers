@@ -58,6 +58,11 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
           writeMessage('System', `Room created with id ${payload.id}`)
           break;
         }
+
+        case 'SEND_CHAT_MESSAGE': {
+          writeMessage(payload.senderTag, payload.text);
+          break;
+        }
       }
     });
   }, [webSocketRef.current]);
