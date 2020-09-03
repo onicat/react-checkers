@@ -6,10 +6,19 @@
   background-color: #2C2C2C;
 }
 
-.Panel__player {
+.Panel__item {
   margin: 0;
-  padding: 0 5px;
-  font-size: 1.2em;
+  padding: 0 10px;
   color: #E5E5E5;
   font-weight: lighter;
+}
+
+.Panel__item_player {
+  flex-grow: 1;
+  font-size: 1.2em;
+}
+
+.Panel__item_turn {
+  white-space: break-spaces;
+  font-size: 1em;
 }

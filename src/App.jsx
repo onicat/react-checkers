@@ -61,7 +61,11 @@ const App = ({
     <div className='App'>
       <Menu stage={stage} webSocketRef={webSocketRef}/>
       <div className='App__module'>
-        <Panel currentPlayer={currentPlayer}/>
+        <Panel 
+          currentPlayer={currentPlayer}
+          onlineTag={onlineTag}
+          stage={stage}
+        />
         <Board 
           onlineTag={onlineTag}
           stage={stage}
