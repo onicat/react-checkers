@@ -9,6 +9,7 @@ import Button from './Button';
 import { STAGES } from 'js/constants';
 import { connect } from 'react-redux';
 import { getOnlineTag } from 'redux/selectors';
+import requestActions from 'js/requestActions';
 
 const Chat = ({stage, webSocketRef, onlineTag}) => {
   const [messages, changeMessages] = useState([]);
@@ -23,6 +24,16 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
         text={text}
       />
     ]);
+  };
+
+  const sendButtonHandler = () => {
+    if (stage !== STAGES.ONLINE) return;
+
+    writeMessage(onlineTag, inputValue);
+    webSocketRef.current.send(requestActions.sendChatMessage(
+      onlineTag,
+      inputValue
+    ));
   };
 
   useEffect(() => {
@@ -79,7 +90,7 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
         inputValue={inputValue}
         changeInputValue={changeInputValue}
       />
-      <Button>Send</Button>
+      <Button onClick={sendButtonHandler}>Send</Button>
     </div>
   )
 };
