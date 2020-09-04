@@ -19,7 +19,7 @@ const Menu = ({
 }) => {
   const [inputValue, changeInputValue] = useState('');
   
-  const joinButtonHandler = () => {
+  const handleJoinButtonClick = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER2);
     changeStage(STAGES.CONNECTING);
@@ -29,7 +29,7 @@ const Menu = ({
     });
   };
 
-  const createRoomButtonHandler = () => {
+  const handleCreateRoomButtonClick = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
     changeOnlineTag(PLAYERS_TAGS.PLAYER1);
     changeStage(STAGES.CONNECTING);
@@ -40,11 +40,11 @@ const Menu = ({
     });
   };
 
-  const exitButtonHandler = () => {
+  const handleExitButtonClick = () => {
     webSocketRef.current.close(1000, 'You are disconnected from the server');
   };
 
-  const restartButtonHandler = () => {
+  const handleRestartButtonClick = () => {
     resetCurrentPlayer();
     changeOnlineTag(null);
     resetBoard();
@@ -59,7 +59,7 @@ const Menu = ({
     <div className='Menu'>
       <Button 
         disabled={stage !== STAGES.OFFLINE}
-        onClick={createRoomButtonHandler}
+        onClick={handleCreateRoomButtonClick}
       >
         Create room
       </Button>
@@ -71,20 +71,20 @@ const Menu = ({
         changeInputValue={changeInputValue}
       />
       <Button
-        onClick={joinButtonHandler}
+        onClick={handleJoinButtonClick}
         disabled={stage !== STAGES.OFFLINE}
       >
         Join
       </Button>
       <div className='Menu__divider'/>
       <Button
-        onClick={exitButtonHandler}
+        onClick={handleExitButtonClick}
         disabled={stage === STAGES.OFFLINE}
       >
         Exit
       </Button>
       <Button
-        onClick={restartButtonHandler}
+        onClick={handleRestartButtonClick}
         disabled={stage !== STAGES.OFFLINE}
       >
         Restart
