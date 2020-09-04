@@ -63,7 +63,11 @@ const App = ({
 
   return (
     <div className='App'>
-      <Menu stage={stage} webSocketRef={webSocketRef}/>
+      <Menu
+        stage={stage}
+        webSocketRef={webSocketRef}
+        changeMoveablePlayers={changeMoveablePlayers}
+      />
       <div className='App__module'>
         <Panel 
           currentPlayer={currentPlayer}

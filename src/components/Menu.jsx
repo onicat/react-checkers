@@ -5,10 +5,18 @@ import 'styles/Menu.css'
 import Button from './Button'
 import Input from './Input';
 import { SERVER_WS_URL, STAGES, PLAYERS_TAGS } from 'js/constants';
-import { changeOnlineTag, changeStage } from 'redux/actions'
+import { changeOnlineTag, changeStage, resetBoard, resetCurrentPlayer } from 'redux/actions'
 import requestActions from 'js/requestActions';
 
-const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
+const Menu = ({
+  stage,
+  webSocketRef,
+  changeOnlineTag,
+  changeStage,
+  changeMoveablePlayers,
+  resetBoard,
+  resetCurrentPlayer
+}) => {
   const [inputValue, changeInputValue] = useState('');
   
   const joinButtonHandler = () => {
@@ -34,6 +42,17 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
 
   const exitButtonHandler = () => {
     webSocketRef.current.close(1000, 'You are disconnected from the server');
+  };
+
+  const restartButtonHandler = () => {
+    resetCurrentPlayer();
+    changeOnlineTag(null);
+    resetBoard();
+    changeStage(STAGES.OFFLINE);
+    changeMoveablePlayers([
+      PLAYERS_TAGS.PLAYER1,
+      PLAYERS_TAGS.PLAYER2]
+    );
   };
   
   return (
@@ -64,11 +83,17 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       >
         Exit
       </Button>
+      <Button
+        onClick={restartButtonHandler}
+        disabled={stage !== STAGES.OFFLINE}
+      >
+        Restart
+      </Button>
     </div>
   )
 };
 
 export default connect(
   null,
-  {changeOnlineTag, changeStage}
+  {changeOnlineTag, changeStage, resetCurrentPlayer, resetBoard}
 )(Menu);
