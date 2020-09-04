@@ -31,6 +31,10 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       changeStage(STAGES.WAITING_FOR_PLAYER);
     });
   }
+
+  const exitButtonHandler = () => {
+    webSocketRef.current.close(1000, 'You are disconnected from the server');
+  }
   
   return (
     <div className='Menu'>
@@ -55,6 +59,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       </Button>
       <div className='Menu__divider'/>
       <Button
+        onClick={exitButtonHandler}
         disabled={stage === STAGES.OFFLINE}
       >
         Exit
