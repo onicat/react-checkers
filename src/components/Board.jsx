@@ -10,12 +10,15 @@ import WaysCreator from 'js/creators/WaysCreator'
 import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
 import { STAGES } from 'js/constants'
 import requestActions from 'js/requestActions'
+import getMoveablePlayers from 'js/getMoveablePlayers'
 
 const Board = ({
   board,
   currentPlayer,
   onlineTag,
   stage,
+  moveablePlayers,
+  changeMoveablePlayers,
   webSocketRef,
   moveChecker,
   removeChecker,
@@ -24,6 +27,7 @@ const Board = ({
   const [selectedChecker, selectChecker] = useState(null);
   
   const restrictedSelectChecker = checker => {
+    if (moveablePlayers.length !== 2) return;
     if (checker && checker.player !== currentPlayer) return;
     if (stage === STAGES.ONLINE && currentPlayer !== onlineTag) return;
 
@@ -50,6 +54,14 @@ const Board = ({
     selectChecker(null);
     togglePlayer();
   };
+
+  useEffect(() => {
+    const computedMoveablePlayers = getMoveablePlayers(board);
+
+    if (computedMoveablePlayers.length !== 2) {
+      changeMoveablePlayers(computedMoveablePlayers);
+    }
+  }, [board]);
 
   useEffect(() => {
     if (webSocketRef.current === null) return;

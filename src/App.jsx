@@ -1,6 +1,6 @@
 /*eslint-disable default-case, react-hooks/exhaustive-deps*/
 
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import Board from 'components/Board'
@@ -10,7 +10,7 @@ import 'App.css'
 import Menu from 'components/Menu'
 import Chat from 'components/Chat'
 import { resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag } from 'redux/actions'
-import { STAGES } from 'js/constants'
+import { STAGES, PLAYERS_TAGS } from 'js/constants'
 
 const App = ({
   currentPlayer,
@@ -22,6 +22,10 @@ const App = ({
   changeOnlineTag
 }) => {
   const webSocketRef = useRef(null);
+  const [moveablePlayers, changeMoveablePlayers] = useState([
+    PLAYERS_TAGS.PLAYER1,
+    PLAYERS_TAGS.PLAYER2
+  ]);
 
   useEffect(() => {
     if (webSocketRef.current === null) return;
@@ -65,12 +69,15 @@ const App = ({
           currentPlayer={currentPlayer}
           onlineTag={onlineTag}
           stage={stage}
+          moveablePlayers={moveablePlayers}
         />
         <Board 
           onlineTag={onlineTag}
           stage={stage}
           currentPlayer={currentPlayer}
           webSocketRef={webSocketRef}
+          changeMoveablePlayers={changeMoveablePlayers}
+          moveablePlayers={moveablePlayers}
         />
       </div>
       <div className='App__module'>

@@ -4,7 +4,25 @@ import 'styles/Panel.css'
 import { STAGES } from 'js/constants'
 import getPlayerColor from 'js/getPlayerColor'
 
-const Panel = ({currentPlayer, onlineTag, stage}) => {
+const Panel = ({currentPlayer, onlineTag, stage, moveablePlayers}) => {
+  if (moveablePlayers.length !== 2) {
+    const playerColor = getPlayerColor(moveablePlayers[0]);
+    
+    return (
+      <div className='Panel'>
+        {(moveablePlayers.length === 0) ?
+          <h2>Draw!</h2>:
+          <h2 className='Panel__item Panel__item_winner'>
+            <span style={{color: playerColor}}>
+              {moveablePlayers[0]}
+            </span>
+            is the winner!
+          </h2>
+        }
+      </div>
+    )
+  }
+  
   return (
     <div className='Panel'>
       <h2 className='Panel__item Panel__item_player'>

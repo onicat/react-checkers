@@ -22,3 +22,8 @@
   white-space: break-spaces;
   font-size: 1em;
 }
+
+.Panel__item_winner {
+  margin: auto;
+  font-size: 1em;
+}
