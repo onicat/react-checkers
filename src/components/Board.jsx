@@ -57,7 +57,6 @@ const Board = ({
       webSocketRef.current.send(requestActions.goToWay(onlineTag, way));
     }
 
-    selectChecker(null);
     togglePlayer();
   };
 
@@ -67,6 +66,8 @@ const Board = ({
     if (computedMoveablePlayers.length !== 2) {
       changeMoveablePlayers(computedMoveablePlayers);
     }
+
+    selectChecker(null);
   }, [board]);
 
   useEffect(() => {
@@ -78,12 +79,6 @@ const Board = ({
       switch(type) {
         case 'GO_TO_WAY': {
           goToWay(payload.way);
-
-          break;
-        }
-
-        case 'GAME_READY': {
-          selectChecker(null);
 
           break;
         }
