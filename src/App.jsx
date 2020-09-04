@@ -81,7 +81,11 @@ const App = ({
         />
       </div>
       <div className='App__module'>
-        <Chat onlineTag={onlineTag} webSocketRef={webSocketRef} stage={stage}/>
+        <Chat
+          onlineTag={onlineTag}
+          webSocketRef={webSocketRef}
+          stage={stage}
+        />
       </div>
     </div>
   )
