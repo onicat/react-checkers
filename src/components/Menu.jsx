@@ -19,7 +19,7 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
     webSocketRef.current.addEventListener('open', () => {
       webSocketRef.current.send(requestActions.join(inputValue, PLAYERS_TAGS.PLAYER2));
     });
-  }
+  };
 
   const createRoomButtonHandler = () => {
     webSocketRef.current = new WebSocket(SERVER_WS_URL);
@@ -30,11 +30,11 @@ const Menu = ({stage, webSocketRef, changeOnlineTag, changeStage}) => {
       webSocketRef.current.send(requestActions.createRoom(PLAYERS_TAGS.PLAYER1));
       changeStage(STAGES.WAITING_FOR_PLAYER);
     });
-  }
+  };
 
   const exitButtonHandler = () => {
     webSocketRef.current.close(1000, 'You are disconnected from the server');
-  }
+  };
   
   return (
     <div className='Menu'>
