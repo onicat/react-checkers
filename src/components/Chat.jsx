@@ -8,6 +8,7 @@ import Message from './Message';
 import Button from './Button';
 import { STAGES } from 'js/constants';
 import requestActions from 'js/requestActions';
+import responseActionTypes from 'js/responseActionTypes';
 
 const Chat = ({stage, webSocketRef, onlineTag}) => {
   const [messages, changeMessages] = useState([]);
@@ -65,12 +66,12 @@ const Chat = ({stage, webSocketRef, onlineTag}) => {
       const {type, payload} = JSON.parse(msg.data);
 
       switch(type) {
-        case 'SEND_ROOM_ID': {
+        case responseActionTypes.SEND_ROOM_ID: {
           writeMessage('System', `Room created with id ${payload.id}`)
           break;
         }
 
-        case 'SEND_CHAT_MESSAGE': {
+        case responseActionTypes.SEND_CHAT_MESSAGE: {
           writeMessage(payload.senderTag, payload.text);
           break;
         }

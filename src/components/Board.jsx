@@ -11,6 +11,7 @@ import { moveChecker, removeChecker, togglePlayer } from 'redux/actions'
 import { STAGES } from 'js/constants'
 import requestActions from 'js/requestActions'
 import getMoveablePlayers from 'js/getMoveablePlayers'
+import requestActionTypes from 'js/requestActionTypes'
 
 const Board = ({
   board,
@@ -77,7 +78,7 @@ const Board = ({
       const {type, payload} = JSON.parse(msg.data);
 
       switch(type) {
-        case 'GO_TO_WAY': {
+        case requestActionTypes.GO_TO_WAY: {
           goToWay(payload.way);
 
           break;

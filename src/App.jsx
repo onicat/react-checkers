@@ -11,6 +11,7 @@ import Menu from 'components/Menu'
 import Chat from 'components/Chat'
 import { resetBoard, resetCurrentPlayer, changeStage, changeOnlineTag } from 'redux/actions'
 import { STAGES, PLAYERS_TAGS } from 'js/constants'
+import responseActionTypes from 'js/responseActionTypes'
 
 const App = ({
   currentPlayer,
@@ -49,7 +50,7 @@ const App = ({
       const {type} = JSON.parse(msg.data);
 
       switch(type) {
-        case 'GAME_READY': {
+        case responseActionTypes.GAME_READY: {
           resetBoard();
           resetCurrentPlayer();
           changeStage(STAGES.ONLINE);
