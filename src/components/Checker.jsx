@@ -18,7 +18,7 @@ const Checker = ({checker, selectChecker}) => {
     'Checker_king': checker.type === 'king'
   });
 
-  const clickHandler = selectChecker.bind(null, checker);
+  const clickHandler = (selectChecker) ? selectChecker.bind(null, checker) : null;
   
   return (
     <div 
