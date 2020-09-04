@@ -25,13 +25,19 @@ const Board = ({
   togglePlayer
 }) => {
   const [selectedChecker, selectChecker] = useState(null);
-  
-  const restrictedSelectChecker = checker => {
-    if (moveablePlayers.length !== 2) return;
-    if (checker && checker.player !== currentPlayer) return;
-    if (stage === STAGES.ONLINE && currentPlayer !== onlineTag) return;
 
-    selectChecker(checker);
+  let restrictedSelectChecker = checker => {
+    if (checker.player === currentPlayer) {
+      selectChecker(checker);
+    }
+  };
+
+  if (moveablePlayers.length !== 2) {
+    restrictedSelectChecker = null;
+  }
+
+  if (stage === STAGES.ONLINE && currentPlayer !== onlineTag) {
+    restrictedSelectChecker = null;
   }
 
   const waysCreator = new WaysCreator(board);
