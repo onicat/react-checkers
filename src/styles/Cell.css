@@ -1,0 +1,21 @@
+.Cell {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+
+.Cell_active {
+  background-color: #1D1D1D;
+}
+
+.Cell_passive {
+  background-color: #2C2C2C;
+}
+
+.Cell_way_jump {
+  background-color: #c8b900;
+}
+
+.Cell_way_eaten {
+  background-color: #ff5722;
+}

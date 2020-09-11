@@ -1,0 +1,16 @@
+.Chat {
+  width: 400px;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #2C2C2C;
+}
+
+.Chat__messages-block {
+  height: 90%;
+  overflow: auto;
+}
+
+.Chat__input-form {
+  margin-top: 5px;
+}

@@ -1,0 +1,8 @@
+.Message {
+  padding: 3px 0;
+  color: #E5E5E5;
+}
+
+.Message__author {
+  font-weight: bold;
+}
