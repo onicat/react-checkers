@@ -1,3 +1,5 @@
+![Preview Image](https://github.com/onicat/react-checkers/blob/master/github/preview.png)
+
 # Powered by...
 
 - React & Redux with [React-redux](https://react-redux.js.org/)
