@@ -1,13 +1,10 @@
 import React from 'react'
-import TestRenderer from 'react-test-renderer';
 
 import Button from 'components/Button';
+import toMatchSnapshot from 'tests/toMatchSnapshot';
 
 describe('<Button />', () => {
   it('Render Button without className', () => {
-    const tree = TestRenderer
-      .create(<Button>Button</Button>)
-      .toJSON();
-    expect(tree).toMatchSnapshot()
+    toMatchSnapshot(<Button>Button</Button>);
   })
 });
